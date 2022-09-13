@@ -1,0 +1,40 @@
+2231. Largest Number After Digit Swaps by Parity
+class Solution {
+    public int largestInteger(int num) {
+        
+        String s = String.valueOf(num);
+        
+         PriorityQueue<Integer> pq1 = new PriorityQueue<>(Comparator.reverseOrder());
+         PriorityQueue<Integer> pq2 = new PriorityQueue<>(Comparator.reverseOrder());
+        
+        for(int i=0;i<s.length();i++)
+        {
+           
+            if((s.charAt(i)-'0')%2==0)
+            { 
+               pq1.offer(s.charAt(i)-'0');
+            }
+            else{
+                 
+                pq2.offer(s.charAt(i)-'0');
+            }
+        }
+   
+        int res=0;
+        for(int i=0;i<s.length();i++)
+        {
+            res=res*10;
+            if((s.charAt(i)-'0')%2==0)
+            {
+              res=res+pq1.peek();
+                pq1.poll();
+            }
+            else{
+                res=res+pq2.peek();
+                pq2.poll();
+            }
+        }
+        
+        return res;
+    }
+}

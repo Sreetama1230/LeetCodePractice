@@ -1,0 +1,26 @@
+1446. Consecutive Characters
+class Solution {
+    public int maxPower(String s) {
+        
+        char pre =' ';
+        int count=0;
+        int maxcount=0;
+        for(int i=0;i<s.length();i++)
+        {
+            char c = s.charAt(i);
+            if(pre==c)
+            {
+                count++;
+            }
+            else{
+                pre=c;
+                count=1;
+            }
+            
+            maxcount=Math.max(count,maxcount);
+        }
+        
+        return maxcount;
+        
+    }
+}
